@@ -1,0 +1,139 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-width:100%;
+  min-height:100%;
+  font: Arial 14px;
+}
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  overflow: scroll;
+  width: 100%;
+  height: 28px;
+  max-height: 28px;
+}
+
+@media (orientation:landscape) {
+  #menu {
+    flex-wrap: nowrap;
+  }
+  
+  #menu > div > div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
+#menu > div {
+  display: flex;
+  width: 100%;
+}
+
+#menu + * {
+  padding-top: 30px;
+}
+
+#book > pre {
+  width: 100%;
+  white-space:pre-wrap;
+}
+
+#container {
+  display: flex;
+}
+
+#container div {
+  display: flex;
+}
+
+#container textarea {
+  -webkit-appearance: none;
+  min-width: 120px;
+  max-width: 120px;
+  min-height: 14px;
+}
+
+.selected {
+  outline: none;
+  background: linear-gradient(to bottom right, rgba(255,127,0,0.5), rgba(0,0,0,0) 20px);
+}
+
+.hori {
+  flex-direction: row;
+  align-items:stretch;
+}
+
+.vert {
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: 0 1px 0 black, 0 -1px 0 black;
+}
+
+.state-btn {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+button[data-state="important"] {
+  background: rgba(255,0,0,0.5);
+}
+
+button[data-state="first"] {
+  background: rgba(255,127,0,0.5);
+}
+
+button[data-state="edit"] {
+  background: rgba(255,255,0,0.5);
+}
+
+button[data-state="final"] {
+  background: rgba(0,255,160,0.5);
+}
+
+textarea[data-state="important"] {
+    box-shadow: 0 5px 0 rgba(255,0,0,0.5) inset;
+}
+
+textarea[data-state="first"] {
+    box-shadow: 0 5px 0 rgba(255,127,0,0.5) inset;
+}
+
+textarea[data-state="edit"] {
+    box-shadow: 0 5px 0 rgba(255,255,0,0.5) inset;
+}
+
+textarea[data-state="final"] {
+    box-shadow: 0 5px 0 rgba(0,255,160,0.5) inset;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+}
+
+input[type="checkbox"]:checked {
+  -webkit-appearance: auto;
+}
+
+input[type="checkbox"][data-state="important"] {
+  background: rgba(255,0,0,0.5);
+  accent-color: rgba(255,0,0,0.5);
+}
+
+input[type="checkbox"][data-state="first"] {
+  background: rgba(255,127,0,0.5);
+  accent-color: rgba(255,127,0,0.5);
+}
+
+input[type="checkbox"][data-state="edit"] {
+  background: rgba(255,255,0,0.5);
+  accent-color: rgba(255,255,0,0.5);
+}
+
+input[type="checkbox"][data-state="final"] {
+  background: rgba(0,255,160,0.5);
+  accent-color: rgba(0,255,160,0.5);
+}
