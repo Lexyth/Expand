@@ -699,7 +699,7 @@ traverse(container, {
   },
   
   onText: (elem) => {
-    jsonString += `${elem.previousElementSibling?",":""}{"text":"${elem.value}"${elem.dataset.state?`,"state":"${elem.dataset.state}"`:""}`; jsonString += elem.parentElement.classList.contains("hori")?',"content":':'}';
+    jsonString += `${elem.previousElementSibling?",":""}{"text":${JSON.stringify(elem.value)}${elem.dataset.state?`,"state":${JSON.stringify(elem.dataset.state)}`:""}`; jsonString += elem.parentElement.classList.contains("hori")?',"content":':'}';
   },
   
   onBack: (elem) => {
