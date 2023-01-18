@@ -458,8 +458,10 @@ let auth = (() => {
 
   return () => {
   if (isAuthenticated()) {
+    console.log("Authenticated");
     return new Dropbox.Dropbox({ fetch: fetch, accessToken: getAccessTokenFromUrl() });
   } else {
+    console.log("Not Authenticated");
     let dbx = new Dropbox.Dropbox({ fetch: fetch, clientId: CLIENT_ID });
     var authUrl = dbx.getAuthenticationUrl(window.location.href);
     let a = document.createElement("a");
