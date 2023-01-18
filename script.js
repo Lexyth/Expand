@@ -411,7 +411,7 @@ addEventListener("keydown", kE => {
 
 import "https://cdnjs.cloudflare.com/ajax/libs/dropbox.js/5.2.1/Dropbox-sdk.js";
 
-let dbx = (() => {
+let auth = (() => {
   (function (window) {
     window.utils = {
       parseQueryString(str) {
@@ -456,6 +456,7 @@ let dbx = (() => {
     return !!getAccessTokenFromUrl();
   }
 
+  return () => {
   if (isAuthenticated()) {
     return new Dropbox.Dropbox({ fetch: fetch, accessToken: getAccessTokenFromUrl() });
   } else {
@@ -469,7 +470,10 @@ let dbx = (() => {
       alert("Authentication failed!");
     }
   }
+  }
 })();
+
+let dbx = auth();
 
 function traverse (parent, accumulator) {
   
@@ -759,6 +763,13 @@ loadBtn.onclick = () => {
 };
 loadBtn.classList.add("btn");
 
+let authBtn = document.createElement("button");
+authBtn.innerText = "Auth";
+authBtn.onclick = () => {
+  dbx = auth();
+};
+authBtn.classList.add("btn");
+
 let addBtn = document.createElement("button");
 addBtn.innerText = "+";
 addBtn.onclick = () => {
@@ -865,7 +876,7 @@ let compileStateDiv = document.createElement("div");
   let completion = document.createElement("div");
   
   operations.append(addBtn, extendBtn, moveUpBtn, moveDownBtn, moveLeftBtn, moveRightBtn, removeBtn, stateDiv);
-  persistence.append(saveBtn, loadBtn);
+  persistence.append(saveBtn, loadBtn, authBtn);
   completion.append(compileAllBtn, compileBtn, compileStateDiv);
   
   menu.append(operations, persistence, completion);
