@@ -449,6 +449,7 @@ let auth = (() => {
   var CLIENT_ID = '4rd4mg7uuzs6jpu';
 
   function getAccessTokenFromUrl() {
+    console.log(`Url: ${window.location.hash}`);
     return utils.parseQueryString(window.location.hash).access_token;
   }
 
@@ -459,6 +460,8 @@ let auth = (() => {
   return () => {
   if (isAuthenticated()) {
     console.log("Authenticated");
+    let token = getAccessTokenFromUrl();
+    console.log(`Token: ${token}`);
     return new Dropbox.Dropbox({ fetch: fetch, accessToken: getAccessTokenFromUrl() });
   } else {
     console.log("Not Authenticated");
