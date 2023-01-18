@@ -457,8 +457,8 @@ let auth = (() => {
     return !!getAccessTokenFromUrl();
   }
 
-  return () => {
-  if (isAuthenticated()) {
+  return (retry) => {
+  if (isAuthenticated() && !retry) {
     console.log("Authenticated");
     let token = getAccessTokenFromUrl();
     console.log(`Token: ${token}`);
@@ -771,7 +771,7 @@ loadBtn.classList.add("btn");
 let authBtn = document.createElement("button");
 authBtn.innerText = "Auth";
 authBtn.onclick = () => {
-  dbx = auth();
+  dbx = auth(true);
 };
 authBtn.classList.add("btn");
 
